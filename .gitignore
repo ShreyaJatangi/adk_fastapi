@@ -1,0 +1,27 @@
+
+.env
+venv/
+env/
+.venv/
+.env/
+.vscode/
+.idea/
+.project
+.pydevproject
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.DS_ Variables / Secrets ---
+Thumbs.db
+.env
+*.env
+build/
+dist/
+*.egg-info/
+htmlcov/
+.tox/
+. files created by code editors like VS Code, PyCharm, etc.
+.vscode/
+.idea/
+*.pytest_cache/
