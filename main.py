@@ -1,13 +1,12 @@
 from google.adk.agents import LlmAgent
 from google.adk.runners import Runner  
-from google.adk.sessions import  RedisSessionService
+from google.adk.sessions import InMemorySessionService
 from google.genai import types
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uuid
 import traceback
-import os
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -38,8 +37,8 @@ root_agent = LlmAgent(
     Your final response to the user must ALWAYS be a user-facing sentence. NEVER end your turn immediately after a tool call without reporting the result. For example, if the tool returns 81, you MUST say 'The result of the calculation is 81.' or something similar.""",
     tools=[get_result],
 )
-redis_url = os.environ.get("REDIS_URL")
-session_service_stateful = RedisSessionService(redis_url=redis_url)
+
+session_service_stateful = InMemorySessionService()
 runner = Runner(agent=root_agent, session_service=session_service_stateful, app_name=APP_NAME)
 
 app = FastAPI()
